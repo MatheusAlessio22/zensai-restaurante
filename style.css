@@ -1,0 +1,1117 @@
+/* ==========================================================================
+   ZENSAI — SABOR ORIENTAL
+   Design System: Dark Mode First · Luxury Minimal · Japandi editorial
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   ------------------------------------------------------------------------- */
+:root {
+  /* Superfícies */
+  --bg-primary: #0A0A0C;
+  --bg-secondary: #121215;
+  --bg-card: #18181D;
+  --bg-elevated: #202026;
+
+  /* Acentos */
+  --accent-red: #C92A2A;
+  --accent-red-hover: #E03131;
+  --accent-gold: #C2A26F;
+  --accent-gold-glow: rgba(194, 162, 111, 0.15);
+
+  /* Texto */
+  --text-primary: #F8F9FA;
+  --text-secondary: #ADB5BD;
+  --text-muted: #6C757D;
+
+  /* Linhas e bordas (inspiração shoji) */
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(201, 42, 42, 0.4);
+  --border-gold: rgba(194, 162, 111, 0.25);
+
+  /* Curvas de animação */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Tipografia */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-accent: 'Noto Serif JP', serif;
+
+  /* Espaçamento fluido */
+  --space-xs: clamp(0.5rem, 0.45rem + 0.25vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 0.65rem + 0.5vw, 1.25rem);
+  --space-md: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
+  --space-lg: clamp(2.5rem, 2rem + 2.5vw, 5rem);
+  --space-xl: clamp(4rem, 3rem + 5vw, 8rem);
+
+  --container-width: 1240px;
+  --header-height: 68px;
+  --header-height-scrolled: 58px;
+}
+
+/* -------------------------------------------------------------------------
+   2. RESET MODERNO
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, picture, svg { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { background: none; border: none; cursor: pointer; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  line-height: 1.15;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* Foco visível — navegação por teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-md);
+  background: var(--accent-red);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  z-index: 1000;
+  border-radius: 4px;
+  transition: top 0.2s var(--ease-smooth);
+}
+.skip-link:focus { top: var(--space-sm); }
+
+/* -------------------------------------------------------------------------
+   3. LAYOUT & UTILIDADES
+   ------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+.section {
+  padding-block: var(--space-xl);
+  scroll-margin-top: var(--header-height);
+}
+
+.section--alt { background-color: var(--bg-secondary); }
+
+.section-header {
+  max-width: 640px;
+  margin-bottom: var(--space-lg);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--accent-gold);
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 1.5rem + 1.6vw, 2.75rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.section-lede {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  font-weight: 300;
+  margin-top: var(--space-sm);
+}
+
+/* Linha divisória fina — inspiração shoji */
+.divider {
+  height: 1px;
+  width: 100%;
+  background: var(--border-subtle);
+  border: none;
+}
+
+/* Textura de fundo em kanji — sutil, discreta */
+.kanji-mark {
+  position: absolute;
+  font-family: var(--font-accent);
+  font-weight: 400;
+  color: var(--text-primary);
+  opacity: 0.03;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+}
+
+/* -------------------------------------------------------------------------
+   4. BOTÕES
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 0.9rem 1.9rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition: transform 0.35s var(--ease-spring), background-color 0.25s var(--ease-smooth), border-color 0.25s var(--ease-smooth), color 0.25s var(--ease-smooth);
+  white-space: nowrap;
+}
+
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.btn-primary {
+  background: var(--accent-red);
+  color: #fff;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+  background: var(--accent-red-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+.btn-secondary:hover, .btn-secondary:focus-visible {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border-subtle);
+  padding: 0.7rem 1.4rem;
+}
+.btn-ghost:hover, .btn-ghost:focus-visible {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.btn-block { width: 100%; }
+
+/* -------------------------------------------------------------------------
+   5. STATUS BADGE (usado na seção Horários)
+   ------------------------------------------------------------------------- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-badge__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-badge.is-open {
+  background: rgba(64, 192, 87, 0.12);
+  color: #63e6a5;
+}
+.status-badge.is-open .status-badge__dot { background: #40c057; box-shadow: 0 0 0 3px rgba(64,192,87,0.18); }
+
+.status-badge.is-closed {
+  background: rgba(201, 42, 42, 0.12);
+  color: #ff8787;
+}
+.status-badge.is-closed .status-badge__dot { background: var(--accent-red); box-shadow: 0 0 0 3px rgba(201,42,42,0.18); }
+
+/* -------------------------------------------------------------------------
+   6. HEADER / NAVBAR
+   ------------------------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  background: rgba(10, 10, 12, 0.35);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: height 0.35s var(--ease-smooth), background-color 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
+}
+
+.header.is-scrolled {
+  height: var(--header-height-scrolled);
+  background: rgba(10, 10, 12, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-color: var(--border-subtle);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+/* Logotipo */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.brand__logo {
+  height: 34px;
+  width: auto;
+  transition: height 0.35s var(--ease-smooth);
+}
+
+.header.is-scrolled .brand__logo { height: 28px; }
+
+/* Navegação desktop — Swiss grid: respiro amplo, tipografia leve, sem quebra de linha */
+.nav-desktop {
+  display: none;
+}
+
+.nav-desktop ul {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.nav-desktop a {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding-block: 0.4rem;
+  transition: color 0.25s var(--ease-smooth);
+}
+
+/* Underline expand — cresce a partir do centro */
+.nav-desktop a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent-red);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-desktop a:hover,
+.nav-desktop a:focus-visible {
+  color: var(--text-primary);
+}
+.nav-desktop a:hover::after,
+.nav-desktop a:focus-visible::after { transform: scaleX(1); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
+}
+
+/* Atalhos sociais do header — leves, substituem o antigo CTA de WhatsApp
+   (o WhatsApp já é acessível pelo botão flutuante e pelo drawer). */
+.header-social {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-social .social-btn {
+  width: 34px;
+  height: 34px;
+}
+
+/* Botão hambúrguer */
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: transform 0.3s var(--ease-spring), opacity 0.2s var(--ease-smooth);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Drawer mobile */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-smooth);
+  z-index: 150;
+}
+.drawer-overlay.is-visible { opacity: 1; pointer-events: auto; }
+
+.drawer {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100%;
+  width: min(86vw, 360px);
+  background: var(--bg-elevated);
+  border-left: 1px solid var(--border-subtle);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.4s var(--ease-spring);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md);
+}
+.drawer.is-open { transform: translateX(0); }
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.drawer-close {
+  width: 40px; height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.drawer-close svg { width: 20px; height: 20px; color: var(--text-secondary); }
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.drawer-nav a {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.drawer-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+}
+
+body.drawer-open { overflow: hidden; }
+
+/* -------------------------------------------------------------------------
+   7. HERO
+   ------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(180deg, rgba(10,10,12,0.92) 0%, rgba(10,10,12,0.55) 28%, rgba(10,10,12,0.35) 55%, rgba(10,10,12,0.85) 88%, var(--bg-primary) 100%),
+    url('./zensai%20area%20externa/zensai%20frente%20restaurante.png');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: var(--header-height);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(10,10,12,0.65) 100%);
+  pointer-events: none;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-block: var(--space-xl);
+}
+
+.hero-kanji {
+  font-family: var(--font-accent);
+  font-size: clamp(4rem, 3rem + 8vw, 11rem);
+  color: var(--text-primary);
+  opacity: 0.05;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: var(--space-md);
+}
+
+.hero-badges span:not(.sep) { white-space: nowrap; }
+.hero-badges .sep { color: var(--border-hover); }
+
+.hero-title {
+  font-size: clamp(2.4rem, 1.8rem + 4.2vw, 5.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  max-width: 16ch;
+  margin-inline: auto;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+  max-width: 620px;
+  margin: var(--space-md) auto 0;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  opacity: 0.92;
+}
+
+/* -------------------------------------------------------------------------
+   8. SEÇÃO O ZENSAI (SOBRE)
+   ------------------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.about-narrative p {
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+}
+.about-narrative p + p { margin-top: var(--space-sm); }
+
+.about-narrative strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.pillars {
+  display: grid;
+  gap: 1px;
+  background: var(--border-subtle);
+  border: 1px solid var(--border-subtle);
+}
+
+.pillar {
+  background: var(--bg-primary);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: background-color 0.3s var(--ease-smooth);
+}
+.pillar:hover { background: var(--bg-card); }
+
+.pillar__icon {
+  width: 34px; height: 34px;
+  color: var(--accent-gold);
+}
+.pillar__icon svg { width: 100%; height: 100%; }
+
+.pillar__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.pillar__text {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* -------------------------------------------------------------------------
+   9. GALERIA GASTRONÔMICA (Cardápio visual)
+   ------------------------------------------------------------------------- */
+.dishes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .dishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dishes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dish-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  transition: transform 0.35s var(--ease-spring), border-color 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+}
+
+.dish-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dish-card:hover .dish-card__media {
+  transform: translateY(-4px);
+  border-color: var(--border-gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dish-card:hover .dish-card__media img { transform: scale(1.06); }
+
+/* -------------------------------------------------------------------------
+   10. GALERIA / EXPERIÊNCIA
+   ------------------------------------------------------------------------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xs);
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 26px),
+    linear-gradient(160deg, var(--bg-card), var(--bg-elevated));
+  border: 1px solid var(--border-subtle);
+}
+
+.gallery-item:nth-child(3n+2) { aspect-ratio: 3 / 4; }
+
+.gallery-item__mark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-sm);
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.gallery-item:hover .gallery-item__mark { transform: scale(1.04); }
+
+.gallery-item__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.gallery-item__caption span:first-child {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.gallery-item__caption span:last-child {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.gallery-item__icon {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 22px; height: 22px;
+  color: var(--border-gold);
+  opacity: 0.6;
+}
+
+/* -------------------------------------------------------------------------
+   11. REVIEWS / AVALIAÇÕES
+   ------------------------------------------------------------------------- */
+.section-header--center {
+  text-align: center;
+  max-width: 680px;
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+}
+
+.section-header--center .eyebrow {
+  justify-content: center;
+}
+
+.section-header--center .eyebrow::before {
+  display: none;
+}
+
+.title-divider {
+  width: 44px;
+  height: 2px;
+  background: var(--accent-gold);
+  margin: 0.8rem auto 1rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 992px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 2.5rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: transform 0.35s var(--ease-spring), border-color 0.3s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-gold);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.review-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border-gold);
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.review-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.review-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.review-stars {
+  color: #FFB800;
+  font-size: 1.05rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 1.1rem;
+}
+
+.review-text {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  font-weight: 300;
+  font-style: normal;
+  margin: 0 0 1.5rem;
+  flex-grow: 1;
+}
+
+.review-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.author-name {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.author-source {
+  font-size: 0.74rem;
+  color: var(--accent-gold);
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------------
+   13. FOOTER — banner de ambiente + sub-rodapé de 3 eixos
+   ------------------------------------------------------------------------- */
+.footer {
+  position: relative;
+  background: #060608;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.footer-hero {
+  position: relative;
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+  /* Foto real do salão do Zensai (lanternas, leques e katanas na parede) — 1799x874, proporção wide ideal para banner */
+  background-image: url('./ambiente/content.png');
+  background-size: cover;
+  background-position: center 38%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  .footer-hero {
+    /* No recorte estreito do mobile, "center" corta o quadro das espadas/lustre à direita;
+       40% horizontal mantém esse quadro central visível */
+    background-position: 40% 38%;
+  }
+}
+
+.footer-hero__overlay {
+  position: absolute;
+  inset: 0;
+  /* Overlay escuro aconchegante com gradiente para garantir 100% de leitura */
+  background: linear-gradient(180deg, rgba(10,10,12,0.82) 0%, rgba(10,10,12,0.72) 50%, rgba(6,6,8,0.95) 100%);
+  pointer-events: none;
+}
+
+.footer-info-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .footer-info-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
+.footer-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-info-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s var(--ease-smooth);
+}
+
+.footer-info-item:hover .footer-info-icon {
+  transform: translateY(-3px);
+  border-color: var(--accent-gold);
+}
+
+.footer-info-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.footer-info-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footer-info-text {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.footer-info-text a {
+  color: var(--text-primary);
+  transition: color 0.2s var(--ease-smooth);
+}
+
+.footer-info-text a:hover {
+  color: var(--accent-gold);
+}
+
+.footer-info-link {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--accent-gold) !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* --- SUB-RODAPÉ INFERIOR (3 EIXOS) --- */
+.footer-bottom-bar {
+  background: #060608;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-block: 1.5rem;
+}
+
+.footer-bottom-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+.brand__logo--footer {
+  height: 38px;
+  width: auto;
+  opacity: 0.9;
+}
+
+.footer-bottom-center p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s var(--ease-smooth);
+}
+
+.social-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+.social-btn:hover {
+  background: var(--accent-red);
+  color: #fff;
+  border-color: var(--accent-red);
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------------------
+   14. WHATSAPP FLOAT (mobile convenience)
+   ------------------------------------------------------------------------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 90;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  transition: transform 0.3s var(--ease-spring);
+}
+.whatsapp-float:hover { transform: scale(1.08); }
+.whatsapp-float svg { width: 26px; height: 26px; }
+
+/* -------------------------------------------------------------------------
+   15. REVEAL ON SCROLL
+   ------------------------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* -------------------------------------------------------------------------
+   16. RESPONSIVO — TABLET (>=768px)
+   ------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  .about-grid { grid-template-columns: 1.1fr 1fr; align-items: start; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* -------------------------------------------------------------------------
+   17. RESPONSIVO — DESKTOP (>=1024px)
+   ------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .nav-desktop { display: block; }
+  .nav-toggle { display: none; }
+
+  .pillars { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1280px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
