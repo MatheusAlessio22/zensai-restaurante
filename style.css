@@ -240,7 +240,7 @@ input:focus-visible {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 0;
   border: 1px solid transparent;
   transition: transform 0.35s var(--ease-spring), background-color 0.25s var(--ease-smooth), border-color 0.25s var(--ease-smooth), color 0.25s var(--ease-smooth);
   white-space: nowrap;
@@ -510,15 +510,10 @@ input:focus-visible {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.drawer-footer {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  padding-top: var(--space-md);
-}
-
 body.drawer-open { overflow: hidden; }
+
+/* Esconde o botão flutuante do WhatsApp enquanto o menu mobile está aberto */
+body.drawer-open .whatsapp-float { display: none; }
 
 /* -------------------------------------------------------------------------
    7. HERO
@@ -672,7 +667,7 @@ body.drawer-open { overflow: hidden; }
 
 @media (max-width: 480px) {
   .dishes-grid {
-    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 }
 
@@ -680,7 +675,7 @@ body.drawer-open { overflow: hidden; }
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 0;
   border: 1px solid var(--border-subtle);
   background: var(--bg-card);
   transition: transform 0.35s var(--ease-spring), border-color 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
@@ -806,37 +801,26 @@ body.drawer-open { overflow: hidden; }
 .review-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 2.5rem 1.75rem 2rem;
+  border-radius: 0;
+  padding: 2.25rem 2rem 1.85rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  text-align: left;
   position: relative;
   transition: transform 0.35s var(--ease-spring), border-color 0.3s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
 }
 
 .review-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   border-color: var(--border-gold);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
 }
 
-.review-avatar {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--border-gold);
-  margin-bottom: 1.25rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.review-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.review-stars {
+  color: #FFB800;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 0.9rem;
 }
 
 .review-title {
@@ -844,23 +828,16 @@ body.drawer-open { overflow: hidden; }
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
   letter-spacing: 0.02em;
-}
-
-.review-stars {
-  color: #FFB800;
-  font-size: 1.05rem;
-  letter-spacing: 0.25em;
-  margin-bottom: 1.1rem;
+  line-height: 1.35;
 }
 
 .review-text {
   color: var(--text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.93rem;
   line-height: 1.65;
   font-weight: 300;
-  font-style: normal;
   margin: 0 0 1.5rem;
   flex-grow: 1;
 }
@@ -868,15 +845,14 @@ body.drawer-open { overflow: hidden; }
 .review-author {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.25rem;
   border-top: 1px solid var(--border-subtle);
   padding-top: 1rem;
-  width: 100%;
 }
 
 .author-name {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: 0.04em;
@@ -886,6 +862,7 @@ body.drawer-open { overflow: hidden; }
   font-size: 0.74rem;
   color: var(--accent-gold);
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 /* -------------------------------------------------------------------------
@@ -949,7 +926,7 @@ body.drawer-open { overflow: hidden; }
 .footer-info-icon {
   width: 46px;
   height: 46px;
-  border-radius: 50%;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--border-subtle);
   display: flex;
@@ -1049,7 +1026,7 @@ body.drawer-open { overflow: hidden; }
 .social-btn {
   width: 36px;
   height: 36px;
-  border-radius: 6px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
