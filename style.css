@@ -4,6 +4,27 @@
    ========================================================================== */
 
 /* -------------------------------------------------------------------------
+   0. FONTE CUSTOMIZADA — Asap Sharp (self-hosted, variable font)
+   ------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Asap Sharp';
+  src: url('./Asap_Sharp/AsapSharp-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Asap Sharp';
+  src: url('./Asap_Sharp/AsapSharp-Italic-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* -------------------------------------------------------------------------
    1. DESIGN TOKENS
    ------------------------------------------------------------------------- */
 :root {
@@ -34,7 +55,7 @@
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Tipografia */
-  --font-heading: 'Montserrat', sans-serif;
+  --font-heading: 'Asap Sharp', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-accent: 'Noto Serif JP', serif;
 
@@ -552,9 +573,9 @@ body.drawer-open { overflow: hidden; }
   flex-wrap: wrap;
   gap: 0.6em;
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.58rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-gold);
   margin-bottom: var(--space-md);
