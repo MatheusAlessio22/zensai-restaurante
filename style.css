@@ -542,6 +542,14 @@ body.drawer-open .whatsapp-float { display: none; }
   pointer-events: none;
 }
 
+@media (max-width: 767px) {
+  .hero {
+    /* No recorte estreito do mobile, "center" desloca a fachada para a direita;
+       44% horizontal mantém a faixada "ZENSAI SABOR ORIENTAL" centralizada na tela */
+    background-position: 43% 22%;
+  }
+}
+
 .hero .container {
   position: relative;
   z-index: 1;
@@ -776,13 +784,6 @@ body.drawer-open .whatsapp-float { display: none; }
   display: none;
 }
 
-.title-divider {
-  width: 44px;
-  height: 2px;
-  background: var(--accent-gold);
-  margin: 0.8rem auto 1rem;
-}
-
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -824,12 +825,12 @@ body.drawer-open .whatsapp-float { display: none; }
 }
 
 .review-title {
-  font-family: 'Shippori Mincho', serif;
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.85rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   line-height: 1.35;
 }
 
