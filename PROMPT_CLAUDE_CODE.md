@@ -93,7 +93,7 @@ Implemente motion de alto nível via CSS acelerado por hardware (`transform`, `o
 
 ### 🏢 DADOS REAIS DO RESTAURANTE (EXTRAÍDOS DA FACHADA)
 - **Nome Oficial:** Zensai Restaurante (Zensai - Sabor Oriental)
-- **WhatsApp Oficial:** `(46) 98812-8289` (link: `https://wa.me/5546988128289?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20no%20Zensai`)
+- **WhatsApp Oficial:** `(46) 99915-3059` (link: `https://wa.me/5546999153059?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20no%20Zensai`)
 - **Telefone Delivery:** `(46) 3025-2591` (link: `tel:4630252591`)
 - **Hero Image:** `./zensai frente restaurante.png` (arquivo local existente na raiz do projeto)
 - **Segmentos:** Sushibar Tradicional & Contemporâneo, Combinados Especiais, Pratos Quentes, Ambiente Izakaya e Delivery Especializado.
@@ -117,7 +117,7 @@ Crie arquivos estáticos puros, sem bundlers obrigatórios, prontos para rodar l
 
 #### 1. Top Announcement Bar
 - Faixa superior elegante com micro-alinhamento:
-  - "🍣 **Delivery & Retirada:** Peça pelo WhatsApp (46) 98812-8289 ou ligue (46) 3025-2591" + Badge com status de hoje.
+  - "🍣 **Delivery & Retirada:** Peça pelo WhatsApp (46) 99915-3059 ou ligue (46) 3025-2591" + Badge com status de hoje.
 
 #### 2. Header / Navbar Fixo
 - **Logo:** Símbolo circular do Sol Vermelho estilizado com o nome "ZENSAI - Sabor Oriental".
@@ -176,7 +176,7 @@ Crie arquivos estáticos puros, sem bundlers obrigatórios, prontos para rodar l
 
 #### 9. Seção Localização & Pedidos
 - Coluna 1:
-  - Bloco de contato com botões diretos de WhatsApp `(46) 98812-8289` e Telefone `(46) 3025-2591`.
+  - Bloco de contato com botões diretos de WhatsApp `(46) 99915-3059` e Telefone `(46) 3025-2591`.
   - Instruções de entrega rápida e retirada no balcão.
   - Botão de rota: "Abrir no Google Maps / Waze".
 - Coluna 2:
